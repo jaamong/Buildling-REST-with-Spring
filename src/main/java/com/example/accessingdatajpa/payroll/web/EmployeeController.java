@@ -1,6 +1,6 @@
 package com.example.accessingdatajpa.payroll.web;
 
-import com.example.accessingdatajpa.payroll.domain.EmployeeNotFoundException;
+import com.example.accessingdatajpa.payroll.domain.exception.EmployeeNotFoundException;
 import com.example.accessingdatajpa.payroll.domain.Employee;
 import com.example.accessingdatajpa.payroll.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.accessingdatajpa.payroll.domain;
+package com.example.accessingdatajpa.payroll.domain.exception;
 
 public class EmployeeNotFoundException extends RuntimeException {
     public EmployeeNotFoundException(Long id) {
