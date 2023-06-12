@@ -3,24 +3,25 @@
 
 <h2>Spring Data JPA 연습 코드</h2>
 <h3> Customer </h3>
+
 * ..entity.`Customer.java`
 * ..repository.`CustomerRepository.java` //only extends CrudRepository<T,ID>
 
-<br>
+<br><br>
 
----
 
 <h2>Spring Data JPA 연습 코드 2 (with HATEOAS)</h2>
 <h3> Person </h3>
+
 * ..entity.`Person.java`
 * ..repository.`PersonRepository.java` //extends CrudRepository<T,ID>, PagingAndSortingRepository<T,ID>
 
-<br>
+<br><br>
 
----
 
 <h2>REST & Spring Data JPA 연습 코드 3 (with Spring HATEOAS)</h2>
 <h3>package payroll - Employee</h3>
+
 * `Employee.java` //entity
 * `EmployeeRepository.java` //extends CrudRepository<T,ID>
 * `EmployeeController.java` //controller
@@ -29,12 +30,12 @@
 * `EmployeeNotFoundException.java` //extends RuntimeException
 * `EmployeeNotFoundAdvice.java` //advice, Employee exception handler
 
-<br>
+<br><br>
 
----
 
 <h2>REST & Spring Data JPA 연습 코드 4 (with Spring HATEOAS)</h2>
 <h3>package payroll - Order</h3>
+
 * `Order.java` //entity
 * `Status.java` //enum
 * `OrderRepository.java` //extends JpaRepository<T,ID>
@@ -44,4 +45,5 @@
 * `OrderNotFoundException.java` //extends RuntimeException
 
 <br><br>
+<br>
 
