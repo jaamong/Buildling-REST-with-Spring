@@ -1,5 +1,6 @@
-package com.example.accessingdatajpa.payroll;
+package com.example.accessingdatajpa.payroll.repository;
 
+import com.example.accessingdatajpa.payroll.domain.Employee;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

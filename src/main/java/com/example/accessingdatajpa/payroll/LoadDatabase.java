@@ -1,5 +1,7 @@
 package com.example.accessingdatajpa.payroll;
 
+import com.example.accessingdatajpa.payroll.domain.Employee;
+import com.example.accessingdatajpa.payroll.repository.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

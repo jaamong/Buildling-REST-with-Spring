@@ -1,5 +1,7 @@
 package com.example.accessingdatajpa.payroll;
 
+import com.example.accessingdatajpa.payroll.web.EmployeeController;
+import com.example.accessingdatajpa.payroll.domain.Employee;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;

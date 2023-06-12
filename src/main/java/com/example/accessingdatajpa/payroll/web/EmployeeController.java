@@ -1,5 +1,9 @@
-package com.example.accessingdatajpa.payroll;
+package com.example.accessingdatajpa.payroll.web;
 
+import com.example.accessingdatajpa.payroll.EmployeeModelAssembler;
+import com.example.accessingdatajpa.payroll.domain.EmployeeNotFoundException;
+import com.example.accessingdatajpa.payroll.domain.Employee;
+import com.example.accessingdatajpa.payroll.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -61,7 +65,7 @@ public class EmployeeController {
      * : Spring HATEOAS build a link to the aggregate root, all(), and call it "employees".
      */
     @GetMapping("/employees/{id}")
-    EntityModel<Employee> getEmployee(@PathVariable("id") Long id) {
+    public EntityModel<Employee> getEmployee(@PathVariable("id") Long id) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
 

@@ -1,4 +1,4 @@
-package com.example.accessingdatajpa.payroll;
+package com.example.accessingdatajpa.payroll.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
