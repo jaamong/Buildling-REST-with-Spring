@@ -15,6 +15,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class EmployeeController {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeModelAssembler assembler;
 
     /**
      * CollectionModel<> is another Spring HATEOAS container;
@@ -32,12 +33,7 @@ public class EmployeeController {
 
         List<EntityModel<Employee>> employees = employeeRepository
                 .findAll().stream()
-                .map(
-                        employee -> EntityModel.of(
-                                employee,
-                                linkTo(methodOn(EmployeeController.class).getEmployee(employee.getId())).withSelfRel(),
-                                linkTo(methodOn(EmployeeController.class).all()).withRel("employees"))
-                )
+                .map(assembler::toModel)
                 .toList();
 
         return CollectionModel.of(
@@ -54,7 +50,7 @@ public class EmployeeController {
     /**
      * `linkTo(methodOn(EmployeeController.class).getEmployee(id)).withSelfRel()` asks
      * : Spring HATEOAS build a link to the EmployeeController's getEmployee() method, and flag it as a self link.
-     * 
+     *
      * `linkTo(methodOn(EmployeeController.class).all()).withRel("employees)` asks
      * : Spring HATEOAS build a link to the aggregate root, all(), and call it "employees".
      */
@@ -63,11 +59,7 @@ public class EmployeeController {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
 
-        return EntityModel.of(
-                employee,
-                linkTo(methodOn(EmployeeController.class).getEmployee(id)).withSelfRel(),
-                linkTo(methodOn(EmployeeController.class).all()).withRel("employees")
-        );
+        return assembler.toModel(employee);
     }
 
     @PutMapping("/employees/{id}")
