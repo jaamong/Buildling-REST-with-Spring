@@ -3,6 +3,8 @@ package com.example.accessingdatajpa.payroll;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,8 +45,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees")
-    public Employee createEmployee(@RequestBody Employee newEmployee) {
-        return employeeRepository.save(newEmployee);
+    public ResponseEntity<?> createEmployee(@RequestBody Employee newEmployee) {
+        EntityModel<Employee> entityModel = assembler.toModel(employeeRepository.save(newEmployee));
+
+        return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(entityModel);
     }
 
     /**
@@ -63,8 +69,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@RequestBody Employee newEmployee, @PathVariable("id") Long id) {
-        return employeeRepository.findById(id)
+    public ResponseEntity<?> updateEmployee(@RequestBody Employee newEmployee, @PathVariable("id") Long id) {
+        Employee updatedEmployee = employeeRepository.findById(id)
                 .map(
                         employee -> {
                             employee.setName(newEmployee.getName());
@@ -75,10 +81,18 @@ public class EmployeeController {
                     newEmployee.setId(id);
                     return employeeRepository.save(newEmployee);
                 });
+
+        EntityModel<Employee> entityModel = assembler.toModel(updatedEmployee);
+
+        return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(entityModel);
     }
 
     @DeleteMapping("/employees/{id}")
-    public void deleteEmployee(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
         employeeRepository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
