@@ -1,4 +1,4 @@
-package com.example.accessingdatajpa.payroll;
+package com.example.accessingdatajpa.payroll.web;
 
 import com.example.accessingdatajpa.payroll.web.EmployeeController;
 import com.example.accessingdatajpa.payroll.domain.Employee;
