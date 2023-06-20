@@ -1,5 +1,6 @@
-package com.example.accessingdatajpa.payroll.web;
+package com.example.accessingdatajpa.payroll.controller;
 
+import com.example.accessingdatajpa.payroll.controller.assembler.OrderModelAssembler;
 import com.example.accessingdatajpa.payroll.domain.Order;
 import com.example.accessingdatajpa.payroll.domain.Status;
 import com.example.accessingdatajpa.payroll.domain.exception.OrderNotFoundException;
@@ -11,7 +12,6 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.mediatype.problem.Problem;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

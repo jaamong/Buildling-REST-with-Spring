@@ -1,8 +1,10 @@
-package com.example.accessingdatajpa.payroll.web;
+package com.example.accessingdatajpa.payroll.controller.assembler;
 
+import com.example.accessingdatajpa.payroll.controller.EmployeeController;
 import com.example.accessingdatajpa.payroll.domain.Employee;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -15,7 +17,7 @@ public class EmployeeModelAssembler implements RepresentationModelAssembler<Empl
     public EntityModel<Employee> toModel(Employee employee) {
         return EntityModel.of(
                 employee,
-                linkTo(methodOn(EmployeeController.class).getEmployee(employee.getId())).withSelfRel(),
+                WebMvcLinkBuilder.linkTo(methodOn(EmployeeController.class).getEmployee(employee.getId())).withSelfRel(),
                 linkTo(methodOn(EmployeeController.class).all()).withRel("employees")
         );
     }

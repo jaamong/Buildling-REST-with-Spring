@@ -1,9 +1,11 @@
-package com.example.accessingdatajpa.payroll.web;
+package com.example.accessingdatajpa.payroll.controller.assembler;
 
+import com.example.accessingdatajpa.payroll.controller.OrderController;
 import com.example.accessingdatajpa.payroll.domain.Order;
 import com.example.accessingdatajpa.payroll.domain.Status;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -17,7 +19,7 @@ public class OrderModelAssembler implements RepresentationModelAssembler<Order, 
 
         EntityModel<Order> orderModel = EntityModel.of(
                 order,
-                linkTo(methodOn(OrderController.class).getOrder(order.getId())).withSelfRel(),
+                WebMvcLinkBuilder.linkTo(methodOn(OrderController.class).getOrder(order.getId())).withSelfRel(),
                 linkTo(methodOn(OrderController.class).all()).withRel("orders")
         );
 

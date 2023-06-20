@@ -1,4 +1,4 @@
-package com.example.accessingdatajpa.payroll.web;
+package com.example.accessingdatajpa.payroll.controller.advice;
 
 import com.example.accessingdatajpa.payroll.domain.exception.EmployeeNotFoundException;
 import org.springframework.http.HttpStatus;
